@@ -1,0 +1,117 @@
+
+==========================================================================================
+Dataset setting: Original Higher Education Dataset - 3-Class Performance
+==========================================================================================
+Rows: 145
+Target distribution:
+Low       67
+High      47
+Medium    31
+
+Model comparison:
+              model  cv_accuracy_mean  cv_macro_f1_mean  test_accuracy  test_balanced_accuracy  test_macro_f1  test_weighted_f1
+  Gradient Boosting             0.707             0.629          0.724                   0.682          0.682             0.729
+      Decision Tree             0.533             0.480          0.621                   0.627          0.611             0.627
+Logistic Regression             0.577             0.530          0.552                   0.486          0.511             0.581
+         Linear SVM             0.585             0.514          0.517                   0.453          0.475             0.542
+      Random Forest             0.569             0.504          0.586                   0.474          0.465             0.556
+                KNN             0.551             0.463          0.552                   0.441          0.402             0.489
+     Dummy Baseline             0.466             0.212          0.448                   0.333          0.206             0.278
+
+Best model for Original Higher Education Dataset - 3-Class Performance: Gradient Boosting
+
+Classification report for best model:
+              precision    recall  f1-score   support
+
+        High       0.78      0.70      0.74        10
+         Low       0.85      0.85      0.85        13
+      Medium       0.43      0.50      0.46         6
+
+    accuracy                           0.72        29
+   macro avg       0.68      0.68      0.68        29
+weighted avg       0.74      0.72      0.73        29
+
+
+==========================================================================================
+Dataset setting: External UCI Dataset - 3-Class Performance with Prior Grades
+==========================================================================================
+Rows: 1044
+Target distribution:
+Medium    610
+Low       230
+High      204
+
+Model comparison:
+              model  cv_accuracy_mean  cv_macro_f1_mean  test_accuracy  test_balanced_accuracy  test_macro_f1  test_weighted_f1
+      Random Forest             0.861             0.849          0.885                   0.883          0.876             0.885
+  Gradient Boosting             0.871             0.859          0.876                   0.872          0.866             0.875
+         Linear SVM             0.831             0.820          0.861                   0.905          0.860             0.862
+      Decision Tree             0.822             0.815          0.852                   0.877          0.846             0.853
+Logistic Regression             0.834             0.825          0.847                   0.884          0.843             0.848
+                KNN             0.739             0.661          0.751                   0.664          0.699             0.739
+     Dummy Baseline             0.584             0.246          0.584                   0.333          0.246             0.430
+
+Best model for External UCI Dataset - 3-Class Performance with Prior Grades: Random Forest
+
+Classification report for best model:
+              precision    recall  f1-score   support
+
+        High       0.85      0.95      0.90        41
+         Low       0.86      0.80      0.83        46
+      Medium       0.91      0.89      0.90       122
+
+    accuracy                           0.89       209
+   macro avg       0.87      0.88      0.88       209
+weighted avg       0.89      0.89      0.88       209
+
+
+==========================================================================================
+Dataset setting: External UCI Dataset - Early Prediction without G1/G2
+==========================================================================================
+Rows: 1044
+Target distribution:
+Medium    610
+Low       230
+High      204
+
+Model comparison:
+              model  cv_accuracy_mean  cv_macro_f1_mean  test_accuracy  test_balanced_accuracy  test_macro_f1  test_weighted_f1
+         Linear SVM             0.568             0.516          0.579                   0.533          0.533             0.582
+      Random Forest             0.625             0.526          0.627                   0.502          0.519             0.600
+  Gradient Boosting             0.616             0.512          0.632                   0.488          0.508             0.596
+Logistic Regression             0.513             0.502          0.483                   0.563          0.487             0.480
+                KNN             0.580             0.402          0.584                   0.405          0.404             0.522
+      Decision Tree             0.419             0.421          0.364                   0.473          0.371             0.338
+     Dummy Baseline             0.584             0.246          0.584                   0.333          0.246             0.430
+
+Best model for External UCI Dataset - Early Prediction without G1/G2: Linear SVM
+
+Classification report for best model:
+              precision    recall  f1-score   support
+
+        High       0.33      0.37      0.35        41
+         Low       0.60      0.59      0.59        46
+      Medium       0.66      0.65      0.66       122
+
+    accuracy                           0.58       209
+   macro avg       0.53      0.53      0.53       209
+weighted avg       0.58      0.58      0.58       209
+
+
+==========================================================================================
+FINAL SUMMARY
+==========================================================================================
+                                             dataset_setting             model  test_accuracy  test_macro_f1  test_weighted_f1
+External UCI Dataset - 3-Class Performance with Prior Grades     Random Forest          0.885          0.876             0.885
+       External UCI Dataset - Early Prediction without G1/G2        Linear SVM          0.579          0.533             0.582
+     Original Higher Education Dataset - 3-Class Performance Gradient Boosting          0.724          0.682             0.729
+
+Interpretation:
+- The original 145-row dataset is too small for reliable exact 8-class grade prediction.
+- Low/Medium/High grouping gives a more stable and interpretable target.
+- The external UCI dataset provides a stronger comparative ML analysis with 1044 rows.
+- The best external result comes from the setting with G1 and G2 included, because they are prior grades that strongly predict final grade G3.
+- The without-G1/G2 setting is lower, but useful as a harder early-prediction benchmark.
+
+Saved result tables to: /mnt/data/project_ext/results_ml
+Saved figures to: /mnt/data/project_ext/figures_ml
